@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <script src="https://webapi.amap.com/maps?v=1.4.15&key=017741df1f5694d656275e052dedb4f6&plugin=AMap.ControlBar"></script>
+    <script src="//a.amap.com/jsapi_demos/static/resource/heatmapData.js"></script>
+    <script>
+      localStorage.setItem('data', JSON.stringify(heatmapData))
+    </script>
   </head>
   <body>
     <noscript>
