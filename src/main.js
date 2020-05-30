@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Element from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import echarts from 'echarts'
+import macarons from 'echarts/theme/macarons'
 import App from './App.vue'
 Vue.config.productionTip = false
 Vue.use(Element, { size: 'small', zIndex: 3000 });
