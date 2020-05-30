@@ -124,7 +124,39 @@
                     });
                 });
                 // 点标记显示内容，HTML要素字符串
-                var markerContent =`<div class="flex"><div class="map-btn">滨江公园空气站</div><div class='map-radius-btn'>217</div></div>`;
+                var markerContent =`<div class="info">
+                                        <div class="card none">
+                                            <div class="title">滨江公园空气站实时空气质量<span class="mleft-10">严重</span><span class="close">X</span></div>
+                                            <div class="mtop-10">
+                                                <div class="flex">
+                                                    <div class="flex-1">PM2.5</div>
+                                                    <div class="flex-1 t-right">32ug/m³</div>
+                                                </div>
+                                            </div>
+                                             <div class="mtop-10">
+                                                <div class="flex">
+                                                    <div class="flex-1">PM2.5</div>
+                                                    <div class="flex-1 t-right">32ug/m³</div>
+                                                </div>
+                                            </div>
+                                             <div class="mtop-10">
+                                                <div class="flex">
+                                                    <div class="flex-1">PM2.5</div>
+                                                    <div class="flex-1 t-right">32ug/m³</div>
+                                                </div>
+                                            </div>
+                                             <div class="mtop-10">
+                                                <div class="flex">
+                                                    <div class="flex-1">PM2.5</div>
+                                                    <div class="flex-1 t-right">32ug/m³</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex">
+                                            <div class="map-btn">滨江公园空气站</div>
+                                            <div class='map-radius-btn'>217</div>
+                                        </div>
+                                    </div>`;
                 var position = new AMap.LngLat(120.1581234, 30.211618981);
                 var marker = new AMap.Marker({
                     position: position,
@@ -133,10 +165,21 @@
                     // 以 icon 的 [center bottom] 为原点
                     offset: new AMap.Pixel(-13, -30)
                 });
-
+                marker.on('click',function(e){
+                    let status =e.target.De.contentDom.firstElementChild.firstElementChild.classList.contains('none');
+                    if(status){
+                        e.target.De.contentDom.firstElementChild.firstElementChild.classList.remove("none")
+                    }else{
+                        e.target.De.contentDom.firstElementChild.firstElementChild.classList.add("none")
+                    }
+                })
                 // 将 markers 添加到地图
                 map.add(marker);
-            }
+                // function clearMarker(){
+                //     console.log(this)
+                // }
+            },
+
         }
     }
 </script>
@@ -150,6 +193,27 @@
         min-width: 100px;
         font-size: 14px;
         border-radius:4px;
+    }
+    .card{
+        display: inline-block;
+        padding:14px;
+        background: #fff;
+        border-radius:8px;
+        font-size: 12px;
+        margin-bottom: 10px;
+        .title{
+            line-height: 24px;
+            border-bottom: 1px solid #d8d8d8;
+            white-space:nowrap;
+            .close{
+                position: relative;
+                top: -10px;
+                left: 10px;
+            }
+        }
+    }
+    .card.none{
+        display: none;
     }
     .map-radius-btn{
         display: inline-block;
@@ -167,7 +231,16 @@
     .el-tabs--card>.el-tabs__header{
         border: none;
     }
+    .mtop-10{
+        margin-top: 10px;
+    }
+    .mleft-10{
+        margin-left: 10px;
+    }
     .el-tabs__item{
         background: #fff;
+    }
+    .t-right{
+        text-align: right;
     }
 </style>
