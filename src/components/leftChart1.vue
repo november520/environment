@@ -233,6 +233,6 @@
 
 <style lang="less" scoped>
 .chart{
-    height: 500px;
+    height: 350px;
 }
 </style>

@@ -225,8 +225,8 @@
     }
     .center-map{
         position: relative;
-        top: -60px;
-        height: 724px;
+        top: -56px;
+        height: 550px;
     }
     .el-tabs--card>.el-tabs__header{
         border: none;

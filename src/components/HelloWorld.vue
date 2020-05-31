@@ -10,20 +10,38 @@
         <leftChart3></leftChart3>
       </div>
       <div class="flex-1d5 marginlr-20">
+        <div class="t-center margintb-20">空气质量热力图</div>
         <el-tabs class="tabs" v-model="activeName" type="card" @tab-click="handleClick">
           <el-tab-pane label="大气" name="1"></el-tab-pane>
           <el-tab-pane label="废气" name="2"></el-tab-pane>
           <el-tab-pane label="杨尘" name="3"></el-tab-pane>
         </el-tabs>
         <centerMap></centerMap>
-        <div style="text-align: left;">
+        <div style="text-align: left;margin-top: -40px;">
           <el-button v-for="(item,index) in buttons" :class="['color'+item]" :key="index" type="primary">{{item}}月</el-button>
         </div>
         <centerChart class="mtop-20"></centerChart>
       </div>
       <div class="flex-1">
+        <div class="t-center margintb-20">污染源溯源定位</div>
         <rightMap></rightMap>
-        <div class="margintb-20 t-center">2020-01-10 杭州污染报警  严重等级：二级</div>
+        <div class="warning-module">
+          <!--<div class="warning-list">-->
+            <!--<span class="flex-1">2020-01-10</span>-->
+            <!--<span class="flex-1">杭州污染报警</span>-->
+            <!--<span class="flex-1">严重等级：二级</span>-->
+          <!--</div>-->
+          <el-table :data="tableData" border style="width: 100%" :show-header="false" height="120">
+            <el-table-column prop="date" label=""></el-table-column>
+            <el-table-column prop="address" label="">
+              <template slot-scope="scope">
+                {{scope.row.address}}污染报警
+              </template>
+            </el-table-column>
+            <el-table-column prop="level" label=""></el-table-column>
+          </el-table>
+        </div>
+        <div class="t-center margintb-20">污染企业废水指标与水质监控指标对比分析</div>
         <rightChart></rightChart>
       </div>
     </div>
@@ -44,7 +62,13 @@ export default {
   data(){
     return{
       activeName:"",
-      buttons:[1,2,3,4,5,6,7,8,9]
+      buttons:[1,2,3,4,5,6,7,8,9,10,11,12],
+      tableData:[
+          {date:"2020-01-10 10:40:21",address:"杭州",level:"严重等级5"},
+          {date:"2020-01-10 14:40:21",address:"杭州",level:"严重等级5"},
+          {date:"2020-01-10 20:03:08",address:"杭州",level:"严重等级2"},
+          {date:"2020-01-10 21:40:21",address:"杭州",level:"严重等级5"}
+        ]
     }
   },
   props: {
@@ -74,6 +98,9 @@ export default {
 <style lang="less">
   .el-button+.el-button{
     margin-left: 2px;
+  }
+  .el-button{
+    width: calc((100% - 24px) / 12);
   }
   .tabs{
     position: relative;
@@ -192,5 +219,22 @@ export default {
   .color20{
     background: #c14089;
     border-color: #c14089;
+  }
+  .warning-module{
+    padding: 10px;
+    margin-top: 10px;
+    height: 130px;
+    border: 1px solid #d8d8d8;
+
+    .warning-list{
+      display: flex;
+      padding: 10px;
+      height: 20px;
+      line-height: 20px;
+      border: 1px solid #d8d8d8;
+    }
+  }
+  .flex-1{
+    flex: 1;
   }
 </style>

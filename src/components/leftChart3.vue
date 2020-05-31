@@ -78,6 +78,6 @@
 
 <style lang="less" scoped>
     .chart{
-        height: 200px;
+        height: 195px;
     }
 </style>

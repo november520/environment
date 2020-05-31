@@ -129,6 +129,6 @@
 
 <style lang="less" scoped>
     .map{
-        height: 800px;
+        height: 387px;
     }
 </style>
